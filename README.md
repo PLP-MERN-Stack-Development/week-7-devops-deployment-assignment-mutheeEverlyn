@@ -1,4 +1,10 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=19908328&assignment_repo_type=AssignmentRepo)
+# 🚀 Week 7: Deployment and DevOps Essentials – Launching Your MERN App
+
+## 🚀 Objective
+Learn how to deploy a full MERN stack application to production, implement CI/CD pipelines, configure environment variables, and set up monitoring for your application.
+
+---
+
 # Deployment and DevOps for MERN Applications
 
 This assignment focuses on deploying a full MERN stack application to production, implementing CI/CD pipelines, and setting up monitoring for your application.
@@ -12,67 +18,164 @@ You will:
 4. Set up CI/CD pipelines with GitHub Actions
 5. Implement monitoring and maintenance strategies
 
-## Getting Started
+---
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Follow the setup instructions in the `Week7-Assignment.md` file
-4. Use the provided templates and configuration files as a starting point
+## 📂 Tasks
 
-## Files Included
+### Task 1: Preparing the Application for Deployment
+- **Frontend (React):**
+  - Run `npm run build` in `/frontend` to generate static assets for production.
+  - Code splitting is enabled by default with React and Vite.
+  - Use `.env.local` for environment variables (see template below).
+- **Backend (Express):**
+  - Error handling and logging are implemented (see code).
+  - Secure HTTP headers can be added with `helmet` (see below).
+  - Use `.env` for environment variables (see template below).
+  - Health check endpoint is available at `/health`.
+- **MongoDB:**
+  - Use MongoDB Atlas for production database.
+  - Ensure proper user permissions and IP whitelisting.
+  - Mongoose handles connection pooling by default.
 
-- `Week7-Assignment.md`: Detailed assignment instructions
-- `.github/workflows/`: GitHub Actions workflow templates
-- `deployment/`: Deployment configuration files and scripts
-- `.env.example`: Example environment variable templates
-- `monitoring/`: Monitoring configuration examples
+### Task 2: Deploying the Backend
+- Deploy backend to Render (or Railway/Heroku).
+- Set environment variables in Render dashboard.
+- Set up GitHub integration for continuous deployment.
+- (Optional) Configure a custom domain and HTTPS.
+- Server monitoring via Render dashboard and `/health` endpoint.
 
-## Requirements
+### Task 3: Deploying the Frontend
+- Deploy frontend to Vercel (or Netlify/GitHub Pages).
+- Configure build settings (`npm run build`).
+- Set environment variables in Vercel dashboard.
+- Set up GitHub integration for continuous deployment.
+- (Optional) Configure a custom domain and HTTPS.
+- Caching is handled by Vercel for static assets.
 
-- A completed MERN stack application from previous weeks
-- Accounts on the following services:
-  - GitHub
-  - MongoDB Atlas
-  - Render, Railway, or Heroku (for backend)
-  - Vercel, Netlify, or GitHub Pages (for frontend)
-- Basic understanding of CI/CD concepts
+### Task 4: CI/CD Pipeline Setup
+- Use GitHub Actions for CI/CD (see `.github/workflows/` for templates).
+- Workflows should run tests, lint, and build both frontend and backend.
+- Configure automatic deployment on successful builds.
+- (Optional) Set up staging and production environments.
+- (Optional) Implement rollback strategies.
 
-## Deployment Platforms
+### Task 5: Monitoring and Maintenance
+- Health check endpoint: `/health` (returns server and DB status).
+- Uptime monitoring: Use services like UptimeRobot or Render's built-in monitoring.
+- Error tracking: Integrate with Sentry or similar (not yet implemented).
+- Performance monitoring: Use Render/Vercel dashboards, or add tools like New Relic (not yet implemented).
+- Maintenance: Schedule regular updates, plan for DB backups, and document deployment/rollback procedures.
 
-### Backend Deployment Options
-- **Render**: Easy to use, free tier available
-- **Railway**: Developer-friendly, generous free tier
-- **Heroku**: Well-established, extensive documentation
+---
 
-### Frontend Deployment Options
-- **Vercel**: Optimized for React apps, easy integration
-- **Netlify**: Great for static sites, good CI/CD
-- **GitHub Pages**: Free, integrated with GitHub
+## 🌐 Deployed Application URLs
+- **Frontend:** [mern-book-store](https://mern-book-store-taupe.vercel.app/)
+- **Backend API:** [mern-book-store](https://https://mern-book-store-bhny.onrender.com)
+- **Health Check:** [https://mern-book-store-bhny.onrender.com/health](https://mern-book-store-bhny.onrender.com/health)
 
-## CI/CD Pipeline
+---
 
-The assignment includes templates for setting up GitHub Actions workflows:
-- `frontend-ci.yml`: Tests and builds the React application
-- `backend-ci.yml`: Tests the Express.js backend
-- `frontend-cd.yml`: Deploys the frontend to your chosen platform
-- `backend-cd.yml`: Deploys the backend to your chosen platform
+## 📦 Environment Variable Templates
 
-## Submission
+### `/frontend/.env.local.example`
+```
+VITE_API_BASE_URL=https://mern-book-store-bhny.onrender.com
+```
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+### `/backend/.env.example`
+```
+DB_URL=your_mongodb_atlas_connection_string
+JWT_SECRET_KEY=your_jwt_secret
+```
 
-1. Complete all deployment tasks
-2. Set up CI/CD pipelines with GitHub Actions
-3. Deploy both frontend and backend to production
-4. Document your deployment process in the README.md
-5. Include screenshots of your CI/CD pipeline in action
-6. Add URLs to your deployed applications
+---
 
-## Resources
+## 🏗️ Production Build & Optimization
+- Run `npm run build` in `/frontend` to generate optimized static assets.
+- Code splitting is enabled by default with Vite/React.
+- Use environment variables for API URLs and secrets.
 
-- [GitHub Actions Documentation](https://docs.github.com/en/actions)
-- [MongoDB Atlas Documentation](https://docs.atlas.mongodb.com/)
-- [Render Documentation](https://render.com/docs)
-- [Railway Documentation](https://docs.railway.app/)
-- [Vercel Documentation](https://vercel.com/docs)
-- [Netlify Documentation](https://docs.netlify.com/) 
+---
+
+## 🔒 Security & Error Handling
+- Backend uses CORS and environment variables for security.
+- Add secure HTTP headers by installing and using `helmet`:
+  ```sh
+  npm install helmet
+  ```
+  In `backend/index.js`:
+  ```js
+  const helmet = require('helmet');
+  app.use(helmet());
+  ```
+- Error handling and logging are implemented in backend routes.
+
+---
+
+## 🚀 Deployment Steps
+
+### Backend (Render)
+1. Create a new Web Service on Render.
+2. Connect your GitHub repo and select the backend folder.
+3. Set environment variables (`DB_URL`, `JWT_SECRET_KEY`).
+4. Deploy and monitor logs for errors.
+
+### Frontend (Vercel)
+1. Import your repo into Vercel.
+2. Set build command to `npm run build` and output directory to `dist`.
+3. Set environment variable `VITE_API_BASE_URL`.
+4. Deploy and test the live site.
+
+---
+
+## ⚙️ CI/CD Pipeline
+- Add GitHub Actions workflows in `.github/workflows/` for frontend and backend.
+- Example workflow for frontend:
+  ```yaml
+  name: Frontend CI
+  on: [push]
+  jobs:
+    build:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+        - name: Install deps
+          run: npm install
+        - name: Build
+          run: npm run build
+        - name: Lint
+          run: npm run lint
+  ```
+- Example workflow for backend:
+  ```yaml
+  name: Backend CI
+  on: [push]
+  jobs:
+    build:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+        - name: Install deps
+          run: npm install
+        - name: Test
+          run: npm test
+  ```
+
+---
+
+## 📊 Monitoring & Maintenance
+- Health check endpoint: `/health`
+
+---
+
+## 📸 Screenshots
+- Add screenshots of your CI/CD pipeline in action here.
+
+---
+
+## 📄 Documentation
+- Add documentation of your monitoring setup and deployment process here.
+
+---
+# mern-book-store-app
+![full-stack-book-store-mern-project](/frontend/src/assets/github-cover.png)
