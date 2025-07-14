@@ -70,7 +70,7 @@ You will:
 
 ## 🌐 Deployed Application URLs
 - **Frontend:** [client-mern-book-store](https://mern-book-store-taupe.vercel.app/)
-- **Backend API:** [server-mern-book-store](https://https://mern-book-store-bhny.onrender.com)
+- **Backend API:** [server-mern-book-store](https://mern-book-store-bhny.onrender.com/)
 - **Health Check:** [https://mern-book-store-bhny.onrender.com/health](https://mern-book-store-bhny.onrender.com/health)
 
 ---
