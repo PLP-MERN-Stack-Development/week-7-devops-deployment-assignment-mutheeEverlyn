@@ -197,5 +197,4 @@ JWT_SECRET_KEY=your_jwt_secret
 8. You can set up a custom domain and HTTPS in the Vercel dashboard if desired.
 
 ---
-# mern-book-store-app
-![full-stack-book-store-mern-project](/frontend/src/assets/github-cover.png)
+
