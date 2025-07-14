@@ -169,7 +169,8 @@ JWT_SECRET_KEY=your_jwt_secret
 ---
 
 ## 📸 Screenshots
-- Add screenshots of your CI/CD pipeline in action here.
+![backend CI/CD](./images/backend.JPG)
+![frontend CI/CD](./images/frontend.JPG)
 
 ---
 
