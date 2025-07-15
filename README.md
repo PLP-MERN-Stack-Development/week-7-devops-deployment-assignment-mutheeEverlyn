@@ -72,6 +72,7 @@ You will:
 - **Frontend:** [client-mern-book-store](https://mern-book-store-taupe.vercel.app/)
 - **Backend API:** [server-mern-book-store](https://mern-book-store-bhny.onrender.com/)
 - **Health Check:** [https://mern-book-store-bhny.onrender.com/health](https://mern-book-store-bhny.onrender.com/health)
+- **Github Project link:** [github link](https://github.com/mutheeEverlyn/mern-book-store.git)
 
 ---
 
